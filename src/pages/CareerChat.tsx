@@ -77,7 +77,7 @@ export const CareerChat: React.FC = () => {
 
       setMessages(prev => [...prev, modelReply]);
     } catch (err: any) {
-      console.error("Chat error:", err);
+      console.warn("Chat error:", err);
       if (retryCount < 2) {
         setTimeout(() => sendMessage(msgText, retryCount + 1), 1500);
         return;

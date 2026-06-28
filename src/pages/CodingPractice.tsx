@@ -73,7 +73,7 @@ export const CodingPractice: React.FC = () => {
         try {
           await addDoc(collection(db, "practice_sessions"), record);
         } catch (e) {
-          console.error("Failed to save coding record:", e);
+          console.warn("Failed to save coding record:", e);
         }
       }
     } catch (err: any) {

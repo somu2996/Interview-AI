@@ -117,7 +117,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
         snapRes.forEach(d => listRes.push({ id: d.id, ...d.data() } as ResumeAnalysisRecord));
         setResumeAudits(listRes);
       } catch (err) {
-        console.error("Dashboard history fetch err:", err);
+        console.warn("Dashboard history fetch err:", err);
       } finally {
         setLoading(false);
       }

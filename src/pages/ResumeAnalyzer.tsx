@@ -87,7 +87,7 @@ export const ResumeAnalyzer: React.FC<ResumeAnalyzerProps> = ({ onNavigate }) =>
         await addDoc(collection(db, "resumes"), record);
         showToast("Analysis saved to Cloud Firestore.", "info");
       } catch (e) {
-        console.error("Failed to persist resume record to firestore:", e);
+        console.warn("Failed to persist resume record to firestore:", e);
       }
     } catch (err: any) {
       if (retryCount < 2) {

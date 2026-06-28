@@ -58,7 +58,7 @@ export const MockInterview: React.FC<MockInterviewProps> = ({ onNavigate }) => {
       setQuestionData(data);
       setCurrentNum(num);
     } catch (err: any) {
-      console.error("Fetch question error:", err);
+      console.warn("Fetch question error:", err);
       if (retryCount < 2) {
         setLoadingMsg(`Retrying AI connection (attempt ${retryCount + 2})...`);
         setTimeout(() => fetchQuestion(num, prevList, retryCount + 1), 1500);
@@ -135,7 +135,7 @@ export const MockInterview: React.FC<MockInterviewProps> = ({ onNavigate }) => {
             durationMinutes: totalQuestions * 8
           });
         } catch (e) {
-          console.error("Failed to save session to firestore:", e);
+          console.warn("Failed to save session to firestore:", e);
         }
       }
     } catch (err: any) {

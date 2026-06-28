@@ -56,7 +56,7 @@ export const AdminDashboard: React.FC = () => {
           if (pracSnap) setPracticeCount(pracSnap.size + 4190);
         }
       } catch (err) {
-        console.error("Admin metrics fetch error:", err);
+        console.warn("Admin metrics fetch error:", err);
       } finally {
         setLoading(false);
       }

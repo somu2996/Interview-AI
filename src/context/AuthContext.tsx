@@ -86,7 +86,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             setUser(newProf);
           }
         } catch (err) {
-          console.error("Firestore user fetch err:", err);
+          console.warn("Firestore user fetch err:", err);
           setUser({
             uid: fbUser.uid,
             email: fbUser.email,
@@ -136,7 +136,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(snap.data() as UserProfile);
       }
     } catch (err: any) {
-      console.error("Google auth err:", err);
+      if (err?.code !== 'auth/popup-closed-by-user' && err?.code !== 'auth/cancelled-popup-request') {
+        console.warn("Google auth note:", err?.message || err);
+      }
       throw err;
     } finally {
       setLoading(false);
@@ -211,7 +213,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       await setDoc(doc(db, "users", user.uid), updated, { merge: true });
     } catch (err) {
-      console.error("Failed to update profile in firestore:", err);
+      console.warn("Failed to update profile in firestore:", err);
     }
   };
 
